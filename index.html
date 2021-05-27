@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Cotações por Péricles S. G. Marques</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <meta name="description" content="Site com cotações das principais moedas do mundo.">
+        <meta name="propeller" content="d5bdfc1cfadef24c96e1984d91ca1aa1">
+
+        
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap');
+
+            body {
+                background-image: url("bg.jpeg");
+                background-attachment: fixed;
+                font-family: 'JetBrains Mono', monospace;
+                color: #FFF;
+                line-height: 1.6;
+            }
+
+            p {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            p.dia_hora {
+                margin-block-start: 0%;
+                font-size: 16px;
+                margin-top: 0%;
+                padding-top: 0%;
+            }
+
+            a:link {
+                color: #3495eb
+            }
+
+            a:hover {
+                color: yellow
+            }
+
+            a:visited {
+                color: #d0a1ff
+            }
+
+            a:active {
+                color: #db3569
+            }
+
+            div.font_cotações {
+                font-size: 32px;
+                text-align: center;
+            }
+
+            div.font_text {
+                text-align: justify;
+            }            
+
+            div.box {
+                background-color: #000;
+                margin-top: 8%;
+                margin-left: auto;
+                margin-right: auto;
+                border: 1px solid goldenrod;                
+                width: 70%;            
+                padding: 0;
+            }
+
+            div.box_margim {
+                margin-bottom: 8%;
+            }
+
+            h1 {
+                margin-top: 0%;
+                margin-bottom: 0%;
+                padding-bottom: 0%;
+            }
+
+            h2 {
+                font-size: 20px;
+                padding-left: 10px;
+                margin-top: 0%;
+                margin-bottom: 0%;
+            }
+
+            @media only screen and (max-width: 740px) {
+                body {
+                    background-image: url("bg.jpeg");
+                }
+
+                p.dia_hora {
+                    font-size: 14px;
+                }
+
+                div.font_cotações {
+                    font-size: 18px;
+                    margin-top: 100px;
+                }
+
+                div.box {    
+                    width: 340px;          
+                    background-color: #000;
+                    border: 1px solid goldenrod;
+                }
+            }       
+        </style>
+
+    </head>
+    <body>    
+    
+        <script>
+            var usa_flag = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/800px-Flag_of_the_United_States.svg.png" width="35" height="23">'
+            var eur_flag = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/125px-Flag_of_Europe.svg.png" width="35" height="23">'
+            var can_flag = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/800px-Flag_of_Canada_%28Pantone%29.svg.png" width="35" height="23">'
+            var aus_flag = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_%28converted%29.svg/1920px-Flag_of_Australia_%28converted%29.svg.png" width="35" height="23">'
+            var jap_flag = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/1920px-Flag_of_Japan.svg.png" width="35" height="23">'
+            var arg_flag = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/1920px-Flag_of_Argentina.svg.png" width="35" height="23">'
+            var gbp_flag = '<img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1920px-Flag_of_the_United_Kingdom.svg.png" width="35" height="23">'
+            var chn_flag = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/125px-Flag_of_the_People%27s_Republic_of_China.svg.png" width="35" height="23">'
+            var sui_flag = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Switzerland_%28Pantone%29.svg/1024px-Flag_of_Switzerland_%28Pantone%29.svg.png" width="35" height="23">'
+            var bar_flag = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/800px-Flag_of_Brazil.svg.png" width="35" height="23">'
+
+            $.getJSON('https://economia.awesomeapi.com.br/all/', function(data) {
+                var text = 
+                    usa_flag + ' ' + new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(1) + ` = ` + new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(`${data.USD.ask}`) + ' ' + bar_flag + '<br>' +
+                    eur_flag + ' ' + new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(1) + ` = ` + new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(`${data.EUR.ask}`) + ' ' + bar_flag + '<br>' +
+                    gbp_flag + ' ' + new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(1) + ` = ` + new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(`${data.GBP.ask}`) + ' ' + bar_flag + '<br>' +
+                    can_flag + ' ' + new Intl.NumberFormat('us-CA', { style: 'currency', currency: 'CAD' }).format(1) + ` = ` + new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(`${data.CAD.ask}`) + ' ' + bar_flag + '<br>' +
+                    aus_flag + ' ' + new Intl.NumberFormat('us-AS', { style: 'currency', currency: 'AUD' }).format(1) + ` = ` + new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(`${data.CAD.ask}`) + ' ' + bar_flag + '<br>' +
+                    arg_flag + ' ' + new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(1) + ` = ` + new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(`${data.ARS.ask}`) + ' ' + bar_flag + '<br>' +
+                    jap_flag + ' ' + new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(1) + ` = ` + new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(`${data.JPY.ask}`) + ' ' + bar_flag + '<br>' +
+                    chn_flag + ' ' + new Intl.NumberFormat('zh-CN', { style: 'currency', currency: 'CNY' }).format(1) + ` = ` + new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(`${data.CNY.ask}`) + ' ' + bar_flag + '<br>' +
+                    sui_flag + ' ' + new Intl.NumberFormat('de-CH', { style: 'currency', currency: 'CHF' }).format(1) + ` = ` + new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(`${data.CHF.ask}`) + ' ' + bar_flag    
+                $(".cotacoes").html(text);
+            });
+
+            $.getJSON('https://economia.awesomeapi.com.br/all/', function(data) {
+                var text = `Última atualização: ${data.USD.create_date}`                   
+                $(".dia_hora").html(text);
+            });
+        </script>
+
+        <div class="box font_cotações">            
+            <h1>COTAÇÕES</h1>
+            <div>
+                <p class="dia_hora"></p>
+            </div>
+            <p class="cotacoes"></p>
+        </div>
+
+        <div style="margin-top: 10% !important;"></div>
+
+        <div class="box font_text box_margim">
+            <div>
+                <h2>Taxa de câmbio</h2>
+                <p>Todas os valores acima são referentes a cotação comercial de cada moeda: Dolar comercial, Euro comercial, Libra comercial...</p>
+                <br>
+                <h2>O que é taxa de câmbio?</h2>
+                <p>A taxa de câmbio é uma relação entre moedas de dois países que resulta no preço de uma delas medido em relação à outra. Mas, além de expressar quantitativamente a condição de troca entre duas moedas, a taxa de câmbio expressa as relações de troca entre dois países. O câmbio é uma das variáveis macroeconômicas mais importantes, sobretudo para as relações comerciais e financeiras de um país com o conjunto dos demais países.<br>Para mais informações: <a href="https://pt.wikipedia.org/wiki/Taxa_de_c%C3%A2mbio">Wikipedia.</a></p>
+                <br>
+                <h2>Sobre o site</h2>
+                <p>Este site foi construído em html, css e javascript. Também foi utilizada uma API gratuita: <a href="https://docs.awesomeapi.com.br/">https://docs.awesomeapi.com.br/</a>.</p>
+                <p>Feito por Péricles S. G. Marques. <a href="mailto:pericles.marques@outlook.com">pericles.marques@outlook.com</a>.</p>
+            </div>
+        </div>
+    </body>
+</html>
